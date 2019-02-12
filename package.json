@@ -1,0 +1,16 @@
+{
+  "name": "node-red-iox-motion-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "motion_app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "node-red": {
+    "nodes": {
+      "Motion IOx connector": "motion_app.js"
+    }
+  },
+  "author": "",
+  "license": "ISC"
+}

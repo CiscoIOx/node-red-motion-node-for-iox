@@ -1,0 +1,26 @@
+<script type="text/javascript">
+    RED.nodes.registerType('Motion IOx connector',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"Motion IOx connector";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="Motion IOx connector">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="Motion IOx connector">
+    <p>A simple node that gets motion data</p>
+</script>
