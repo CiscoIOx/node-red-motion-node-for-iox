@@ -2,7 +2,7 @@
 
 This repo contains code for Cisco IOx motion node module of Node-RED. The motion node is a function that outputs real-time motion data of IR800. The output includes gyroscope and accelerometer of the device.
 
-## Requirements before use
+## Requirements
 
 - Docker deamon up and running.
 - Cisco IR800 device.
@@ -12,25 +12,25 @@ This repo contains code for Cisco IOx motion node module of Node-RED. The motion
 
 - ioxclient installed.
 
-## Steps to use motion node
+## Installation
 
-### If you have the `package.tar` of this app, start from Step 3.
+#### If you have the `package.tar` of this app, start from Step 3.
 
-**0.1 Build Node-RED slim Docker image**
+### 0.1 Build Node-RED slim Docker image
 
 (If you already have Docker image `node0:1.0`, you can skip this step.)
 
 Build Docker image `node0:1.0` using the following package:
 https://github.com/CiscoIOx/node-red-slim-for-iox
 
-**0.2 Build gps node Docker image**
+### 0.2 Build gps node Docker image
 
 (If you already have Docker image `gpsnode:1.0`, you can skip this step.)
 
 Build Docker image `gpsnode:1.0` using the following package:
 https://github.com/CiscoIOx/node-red-gps-node-for-iox
 
-**1. Build motion node Docker image**
+### 1. Build motion node Docker image
 
 Go to the root of this package (same path as Dockerfile) and run:
 `docker build -t motionnode:1.0 .`
@@ -38,7 +38,7 @@ Go to the root of this package (same path as Dockerfile) and run:
 Don't forget the `.` at the end. It means the current directory.
 This will create a Docker image `motionnode:1.0` based on the previously built image `gpsnode:1.0`.
 
-**2. Create IOx application package**
+### 2. Create IOx application package
 
 Use the following command to build the IOx application package named **package.tar**.
 
@@ -46,7 +46,7 @@ Use the following command to build the IOx application package named **package.t
 
 Don't forget the `.` at the end.
 
-**3. Deploy, activate and start the app**
+### 3. Deploy, activate and start the app
 
 Deploy the application onto IR800 using Local Manager or ioxclient.
 
@@ -92,7 +92,7 @@ Run the following command to deploy, activate and start the app:
 
 The `activation.json` file is similar to the Sample Activation payload in [GPS service introduction of IOx](https://developer.cisco.com/docs/iox/#!how-to-install-gps-service/how-to-install-gps-service).
 
-**4. Verify the app is running**
+## Verify the app is running
 
 Open Node-RED interface at **http://:1880**.
 
@@ -122,7 +122,9 @@ If you set `Repeat` to `interval` of `every 2 seconds` and deploy, you'll be abl
 
 To stop data streaming, set `Repeat` back to `none` and deploy.
 
-**5. Export flows**
+## More usage
+
+### Export flows
 
 Enter IOx appconsole by:
 
@@ -140,7 +142,7 @@ Go to Local Manager. Click `Manage` of the nodered app. Click `App-DataDir` tab,
 
 ![image](https://user-images.githubusercontent.com/47573639/52670527-a6048c00-2ecd-11e9-8654-7d1b47515fb9.png)
 
-**6. Use the flows on other devices**
+### Use the flows on other devices
 
 Go to the Local Manager of **a different device**. Or you can use Fog Director for multiple devices.
 
@@ -158,7 +160,7 @@ Example flows are shown below.
 
 ![image](https://user-images.githubusercontent.com/47573639/52670663-f8de4380-2ecd-11e9-9cda-5649b569d978.png)
 
-**7. Set up your own credentialSecret**
+### Set up your own credentialSecret
 
 By default, the `credentialSecret` in `settings.js` of the nodered app is set to `cisco`. If you want to use your own `credentailSecret`, create a file called `cred.json` and upload with path `cred.json` **before** you start the app in IOx:
 
@@ -174,3 +176,15 @@ By default, the `credentialSecret` in `settings.js` of the nodered app is set to
 Make sure you have this `cred.json` file with the same `credentialSecret` for all your devices so that the `flows_$(hostname)_cred.json` file can be decrypted correctly.
 
 Note that once you set `credentialSecret` you cannot change its value.
+
+## Getting help
+
+If you have questions, concerns, bug reports, etc., please file an issue in this repository's Issue Tracker.
+
+
+----
+
+## Credits and references
+
+1. https://nodered.org/docs/creating-nodes/
+2. https://www.npmjs.com/package/node-red-contrib-azure-iot-hub
